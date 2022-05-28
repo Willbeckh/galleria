@@ -18,7 +18,10 @@
     />
     <p>
       {{ image.image_name }}
-      <span class="bg-warning"><small>{{ image.pub_date.utcnow }}</small></span>
+      {% load tz %}
+      <span class="bg-warning"
+        ><small>{{ image.pub_date|timezone:'GMT' }}</small></span
+      >
     </p>
     <p>{{ image.image_description }}</p>
     {% endfor %}
