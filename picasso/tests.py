@@ -1,4 +1,6 @@
+import datetime
 from django.test import TestCase
+from django.utils import timezone
 
 # local imports
 from picasso.models import Image
@@ -17,6 +19,12 @@ class TestImageModel(TestCase):
         """Method to test the instance of the image model"""
         self.assertTrue(isinstance(self.image, Image))
 
+    def test_was_published_recently_with_future_question(self):
+        '''published_recently() method returns false for questions whose timestamp is future.'''
+        time = timezone.now() + datetime.timedelta(days=30)
+        ft_question = Image(pub_date=time)
+        self.assertIs(ft_question.was_published_recently(), False)
+
     def test_save_image(self):
         """Method to test the save image method"""
         self.image.save_image()
@@ -33,6 +41,12 @@ class TestImageModel(TestCase):
     def test_update_image(self):
         """Method to test the update image method"""
         self.image.save_image()
-        self.image.update_image(self.image.id, 'subaru STI', 'subaru ni mpya')
+        self.image.update_image('subaru STI', 'subaru ni mpya')
         images = Image.objects.all()
+        self.assertTrue(len(images) > 0)
+
+    def test_search_image_by_category(self):
+        """Method to test the search image by category method"""
+        self.image.save_image()
+        images = Image.objects.filter(image_name__icontains='subaru')
         self.assertTrue(len(images) > 0)
