@@ -1,6 +1,6 @@
 # local files
 start.sh
-
+media/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
