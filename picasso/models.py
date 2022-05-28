@@ -4,12 +4,25 @@ from django.utils import timezone
 # Create your models here.
 
 
+class Category(models.Model):
+    '''This Class defines the category model'''
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f"Name: {self.name}"
+
+    def save_category(self):
+        '''method that saves the category'''
+        self.save()
+        
+
 class Image(models.Model):
     """Class that defines the image data fields"""
     image_file = models.ImageField(upload_to='picasso/images/')
     image_name = models.CharField(max_length=100, null=False)
     image_description = models.CharField(max_length=500)
     pub_date = models.DateTimeField('date published', auto_now_add=True)
+    categories = models.ManyToManyField(Category)
 
     def __str__(self):
         return f"Name: {self.image_name}"
@@ -32,19 +45,13 @@ class Image(models.Model):
 
     def update_image(self, image_name, image_description):
         '''method to update the selected image'''
-        self.image = Image.objects.filter(id=self.id).update(
-            image_name=image_name, image_description=image_description)
+        try:
+            self.image = Image.objects.filter(id=self.id).update(
+                image_name=image_name, image_description=image_description)
+        except Exception as e:
+            print("Error occured on update: ", e)
 
     def search_image_by_category(self, category):
         '''method to search the image by category'''
-        images = Image.objects.filter(image_name__icontains=category)
+        images = Image.objects.filter(categories__name__icontains=category)
         return images
-
-
-class Category(models.Model):
-    '''This Class defines the category model'''
-    categories = models.ManyToManyField(Image)
-    name = models.CharField(max_length=100)
-
-    def __str__(self):
-        return f"Name: {self.name}"
