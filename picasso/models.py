@@ -30,12 +30,8 @@ class Image(models.Model):
             self.image = Image.objects.filter(pk=id).delete()
         except Exception as e:
             print('Error: ', e)
-        return self.image
     
     def update_image(self, id, image_name, image_description):
         '''method to update the selected image'''
-        try:
-            self.image = Image.objects.filter(pk=id).update(image_name=image_name, image_description=image_description)
-        except Exception as e:
-            print('Error: ', e)
-        return self.image
+        self.image = Image.objects.filter(pk=id).update(image_name=image_name, image_description=image_description)
+        self.save_image()
