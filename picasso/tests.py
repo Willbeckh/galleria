@@ -3,7 +3,7 @@ from django.test import TestCase
 from django.utils import timezone
 
 # local imports
-from picasso.models import Image, Category
+from picasso.models import Image, Category, Location
 
 
 # Create your tests here.
@@ -51,6 +51,7 @@ class TestImageModel(TestCase):
         images = Image.objects.filter(image_name__icontains='subaru')
         self.assertTrue(len(images) > 0)
 
+    # TODO: test the search image by location method
 
 class TestCategoryModel(TestCase):
     '''This class tests the category model functionality'''
@@ -81,4 +82,17 @@ class TestCategoryModel(TestCase):
         self.category.save_category()
         self.category.update_category('cool', 'vibes on vibes')
         categories = Category.objects.all()
-        self.assertTrue(len(categories)> 0)
+        self.assertTrue(len(categories) > 0)
+
+
+class TestLocationModel(TestCase):
+    '''This class tests the location model functionality'''
+
+    def setUp(self):
+        self.location = Location(name='Nairobi')
+
+    def test_is_instance(self):
+        self.assertTrue(isinstance(self.location, Location))
+
+    def tearDown(self):
+        Location.objects.all().delete()
