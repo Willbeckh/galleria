@@ -2,7 +2,16 @@
 
 <!-- root view -->
 {% block content %}
-<div class="hero">
+<div class="hero mt-3">
   <h3>Aesthetes Chill spot.</h3>
+  <!-- display all images -->
+  {% for image in images %}
+  <img src="{{ image.image_file.url }}" alt="" width="auto" height="200px" />
+  <p>
+    {{ image.image_name }}
+    <span class="bg-warning"><small>{{ image.pub_date.utcnow }}</small></span>
+  </p>
+  <p>{{ image.image_description }}</p>
+  {% endfor %}
 </div>
 {% endblock %}
