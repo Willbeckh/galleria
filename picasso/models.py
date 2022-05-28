@@ -14,7 +14,11 @@ class Category(models.Model):
     def save_category(self):
         '''method that saves the category'''
         self.save()
-        
+
+    def delete_category(self, id):
+        '''method that deletes the category'''
+        self.category = Category.objects.get(pk=id).delete()
+
 
 class Image(models.Model):
     """Class that defines the image data fields"""
@@ -49,7 +53,7 @@ class Image(models.Model):
             self.image = Image.objects.filter(id=self.id).update(
                 image_name=image_name, image_description=image_description)
         except Exception as e:
-            print("Error occured on update: ", e)
+            print("Error occured on update method: ", e)
 
     def search_image_by_category(self, category):
         '''method to search the image by category'''
