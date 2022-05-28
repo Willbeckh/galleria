@@ -1,8 +1,10 @@
 from django.urls import path
 
 # local imports
-from picasso.views import index
+from picasso import views
 
+app_name = 'picasso'  # app namespace
 urlpatterns = [
-    path('', index, name='index'),
+    path('', views.index, name='index'),
+    path('about/', views.about, name='about'),
 ]
