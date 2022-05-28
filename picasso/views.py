@@ -11,3 +11,10 @@ def index(request):
         'title': 'Home'
     }
     return render(request, 'picasso/index.html', context)
+
+
+def about(request):
+    context = {
+        'title': 'About'
+    }
+    return render(request, 'picasso/about.html', context)
