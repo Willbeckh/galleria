@@ -19,6 +19,13 @@ class Category(models.Model):
         '''method that deletes the category'''
         self.category = Category.objects.get(pk=id).delete()
 
+    def update_category(self, id, name):
+        '''method that update a particular category details'''
+        try:
+                self.category = Category.objects.filter(pk=id).update(name=name)
+        except Exception as e:
+            print('Error! unable to update ca  tory details', e)
+
 
 class Image(models.Model):
     """Class that defines the image data fields"""
