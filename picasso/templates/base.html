@@ -12,6 +12,17 @@
     <title>Galleria</title>
     {% endif %} {% block styles %} {% bootstrap_css %} {% endblock %}
   </head>
+
+  <!-- static file load -->
+  {% load static %}
+  <script src="{% static 'fontawesomefree/js/all.min.js' %}"></script>
+  <link
+    rel="stylesheet"
+    type="text/css"
+    href="{% static 'picasso/style.css' %}"
+  />
+  <!-- end static load -->
+
   <body>
     {% include 'picasso/navbar.html' %}
     <div class="container">
