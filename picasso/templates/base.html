@@ -13,6 +13,7 @@
     {% endif %} {% block styles %} {% bootstrap_css %} {% endblock %}
   </head>
   <body>
+    {% include 'picasso/navbar.html' %}
     <div class="container">
       {% block content %}
       <!-- home content -->
