@@ -75,3 +75,10 @@ class TestCategoryModel(TestCase):
         self.category.delete_category(self.category.id)
         categories = Category.objects.all()
         self.assertTrue(len(categories) == 0)
+
+    def test_update_category(self):
+        '''method for testing the update category method'''
+        self.category.save_category()
+        self.category.update_category('cool', 'vibes on vibes')
+        categories = Category.objects.all()
+        self.assertTrue(len(categories)> 0)
