@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # user defined apps
     'picasso.apps.PicassoConfig',
-    'bootstrap4'
+    'bootstrap4',
+    'fontawesomefree'
 ]
 
 MIDDLEWARE = [
