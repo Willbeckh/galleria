@@ -37,7 +37,7 @@ class TestImageModel(TestCase):
         self.image.delete_selected_image(self.image.id)
         images = Image.objects.all()
         self.assertTrue(len(images) == 0)
-        
+
     def test_update_image(self):
         """Method to test the update image method"""
         self.image.save_image()
@@ -50,20 +50,28 @@ class TestImageModel(TestCase):
         self.image.save_image()
         images = Image.objects.filter(image_name__icontains='subaru')
         self.assertTrue(len(images) > 0)
-        
-        
+
+
 class TestCategoryModel(TestCase):
     '''This class tests the category model functionality'''
+
     def setUp(self):
         '''method to create test data'''
         self.category = Category(name='vibes')
-        
+
     def test_is_instance(self):
         '''method to test if the category instance is created'''
         self.assertTrue(isinstance(self.category, Category))
-        
+
     def test_save_category(self):
         '''method to test the save category method'''
         self.category.save_category()
         categories = Category.objects.all()
         self.assertTrue(len(categories) > 0)
+
+    def test_delete_category(self):
+        '''method to test the delete category method functionality'''
+        self.category.save_category()
+        self.category.delete_category(self.category.id)
+        categories = Category.objects.all()
+        self.assertTrue(len(categories) == 0)
