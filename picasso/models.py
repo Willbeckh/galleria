@@ -22,9 +22,32 @@ class Category(models.Model):
     def update_category(self, id, name):
         '''method that update a particular category details'''
         try:
-                self.category = Category.objects.filter(pk=id).update(name=name)
+            self.category = Category.objects.filter(pk=id).update(name=name)
         except Exception as e:
-            print('Error! unable to update ca  tory details', e)
+            print('Error! unable to update category details', e)
+
+
+class Location(models.Model):
+    '''this classdefines the location model structure'''
+    location = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f"name: {self.location}"
+
+    def save_location(self):
+        '''method that saves the location'''
+        self.save()
+
+    def delete_location(self, id):
+        '''method that deletes the location'''
+        self.location = Location.objects.get(pk=id).delete()
+
+    def update_location(self, id, name):
+        '''method that update a particular location details'''
+        try:
+            self.location = Location.objects.filter(pk=id).update(name=name)
+        except Exception as e:
+            print('Error! unable to update locationdetails', e)
 
 
 class Image(models.Model):
@@ -34,6 +57,7 @@ class Image(models.Model):
     image_description = models.CharField(max_length=500)
     pub_date = models.DateTimeField('date published', auto_now_add=True)
     categories = models.ManyToManyField(Category)
+    location = models.ForeignKey(Location, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"Name: {self.image_name}"
