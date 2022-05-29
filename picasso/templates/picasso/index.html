@@ -7,24 +7,24 @@
     <h3>Aesthetes Chill spot.</h3>
   </div>
   <!-- display all images -->
-  <div class="col-lg-4 mt-4">
+  <div class="mt-4">
     {% for image in images %}
     <img
       src="{{ image.image_file.url }}"
       alt="{{ image.image_name }} image"
-      width="auto"
-      height="200px"
-      class=""
+      class="rounded image"
     />
     <p>
       {{ image.image_name }}
+      <!-- timezone loader -->
       {% load tz %}
       <span class="bg-warning"
-        ><small>{{ image.pub_date|timezone:'GMT' }}</small></span
+        ><small>{{ image.pub_date|date:'d/m/Y H:m'}}</small></span
       >
     </p>
     <p>{{ image.image_description }}</p>
     {% endfor %}
+    <!-- todo: display image category -->
   </div>
 </div>
 {% endblock %}
