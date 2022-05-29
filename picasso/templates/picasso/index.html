@@ -8,7 +8,7 @@
   </div>
   <!-- display all images -->
   <div class="mt-4">
-    {% for image in images %}
+    {% for image in images %} {% if message %} {{message}} {% endif %}
     <img
       src="{{ image.image_file.url }}"
       alt="{{ image.image_name }} image"
@@ -17,7 +17,6 @@
     <p>
       {{ image.image_name }}
       <!-- timezone loader -->
-      {% load tz %}
       <span class="bg-warning"
         ><small>{{ image.pub_date|date:'d/m/Y H:m'}}</small></span
       >
