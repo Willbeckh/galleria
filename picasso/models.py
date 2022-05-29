@@ -24,30 +24,31 @@ class Category(models.Model):
         try:
             self.category = Category.objects.filter(pk=id).update(name=name)
         except Exception as e:
-            print('Error! unable to update category details', e)
+            print('Error! unable to update category details: ', e)
 
 
 class Location(models.Model):
     '''this classdefines the location model structure'''
-    location = models.CharField(max_length=100)
+    location_tag = models.CharField(default='Mars',
+                                    max_length=50,  blank=True, unique=True)
 
     def __str__(self):
-        return f"name: {self.location}"
+        return f"name: {self.location_tag}"
 
     def save_location(self):
-        '''method that saves the location'''
+        '''method that saves a location'''
         self.save()
 
     def delete_location(self, id):
-        '''method that deletes the location'''
+        '''method that deletes a location tag'''
         self.location = Location.objects.get(pk=id).delete()
 
     def update_location(self, id, name):
-        '''method that update a particular location details'''
+        '''method that update a particular location tag'''
         try:
             self.location = Location.objects.filter(pk=id).update(name=name)
         except Exception as e:
-            print('Error! unable to update locationdetails', e)
+            print('Error! unable to update location details', e)
 
 
 class Image(models.Model):
@@ -57,7 +58,7 @@ class Image(models.Model):
     image_description = models.CharField(max_length=500)
     pub_date = models.DateTimeField('date published', auto_now_add=True)
     categories = models.ManyToManyField(Category)
-    location = models.ForeignKey(Location, on_delete=models.CASCADE)
+    image_location = models.ForeignKey(Location, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"Name: {self.image_name}"
