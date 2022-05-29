@@ -17,6 +17,9 @@ class TestImageModel(TestCase):
         self.image = Image(image_name='subaru',
                            image_description='subaru ya mambaru', image_location=self.location)
 
+    def tearDown(self):
+        Image.objects.all().delete()
+
     def test_instance(self):
         """Method to test the instance of the image model"""
         self.assertTrue(isinstance(self.image, Image))
@@ -71,6 +74,9 @@ class TestCategoryModel(TestCase):
         '''method to test if the category instance is created'''
         self.assertTrue(isinstance(self.category, Category))
 
+    def tearDown(self):
+        Category.objects.all().delete()
+
     def test_save_category(self):
         '''method to test the save category method'''
         self.category.save_category()
@@ -116,7 +122,7 @@ class TestLocationModel(TestCase):
         self.location.delete_location(self.location.id)
         locations = Location.objects.all()
         self.assertTrue(len(locations) == 0)
-        
+
     def test_update_location(self):
         '''method for testing the update location method'''
         self.location.save_location()
