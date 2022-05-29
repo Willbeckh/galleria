@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'galleria_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'galleria',
+        'NAME': 'picasso',
         'USER': 'billy', 
         'PASSWORD': 'pass12',
         'HOST': 'localhost',
