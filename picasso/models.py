@@ -46,7 +46,7 @@ class Location(models.Model):
     def update_location(self, id, name):
         '''method that update a particular location tag'''
         try:
-            self.location = Location.objects.filter(pk=id).update(name=name)
+            self.location = Location.objects.filter(pk=id).update(location_tag=name)
         except Exception as e:
             print('Error! unable to update location details', e)
 
