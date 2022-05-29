@@ -40,18 +40,22 @@
             Categories
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Travel</a>
-            <a class="dropdown-item" href="#">Vibes</a>
+            {% for category in categories %}
+            <a class="dropdown-item" href="#">{{ category.name }}</a>
+            {% endfor %}
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">all</a>
           </div>
         </li>
       </ul>
-      <form class="form-inline my-2 my-lg-0">
+      <form
+        class="form-inline my-2 my-lg-0"
+        action="{% url 'picasso:search_results' %}"
+      >
         <div class="input-group mb-2 mr-sm-2">
           <input
             class="form-control"
             type="search"
+            name="search_term"
             placeholder="Search...."
             aria-label="Search"
           />
