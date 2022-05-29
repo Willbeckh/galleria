@@ -2,16 +2,29 @@
 
 <!-- root view -->
 {% block content %}
-<div class="hero mt-3">
-  <h3>Aesthetes Chill spot.</h3>
+<div class="row mt-3">
+  <div class="col-12">
+    <h3>Aesthetes Chill spot.</h3>
+  </div>
   <!-- display all images -->
-  {% for image in images %}
-  <img src="{{ image.image_file.url }}" alt="" width="auto" height="200px" />
-  <p>
-    {{ image.image_name }}
-    <span class="bg-warning"><small>{{ image.pub_date.utcnow }}</small></span>
-  </p>
-  <p>{{ image.image_description }}</p>
-  {% endfor %}
+  <div class="col-lg-4 mt-4">
+    {% for image in images %}
+    <img
+      src="{{ image.image_file.url }}"
+      alt="{{ image.image_name }} image"
+      width="auto"
+      height="200px"
+      class=""
+    />
+    <p>
+      {{ image.image_name }}
+      {% load tz %}
+      <span class="bg-warning"
+        ><small>{{ image.pub_date|timezone:'GMT' }}</small></span
+      >
+    </p>
+    <p>{{ image.image_description }}</p>
+    {% endfor %}
+  </div>
 </div>
 {% endblock %}

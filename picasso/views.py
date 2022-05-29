@@ -5,7 +5,7 @@ from picasso.models import Image
 
 # Create your views here.
 def index(request):
-    images = Image.objects.all()
+    images = Image.objects.order_by('-pub_date')[:5]
     context = {
         'images': images,
         'title': 'Home'
