@@ -12,8 +12,13 @@ class TestImageModel(TestCase):
 
     def setUp(self):
         """Method to create the test data"""
+        self.location = Location(location_tag='mars')
+        self.location.save_location()
         self.image = Image(image_name='subaru',
-                           image_description='subaru ya mambaru')
+                           image_description='subaru ya mambaru', image_location=self.location)
+
+    def tearDown(self):
+        Image.objects.all().delete()
 
     def test_instance(self):
         """Method to test the instance of the image model"""
@@ -51,7 +56,12 @@ class TestImageModel(TestCase):
         images = Image.objects.filter(image_name__icontains='subaru')
         self.assertTrue(len(images) > 0)
 
-    # TODO: test the search image by location method
+    def test_filter_image_by_location(self):
+        '''method to test the filter image by location method'''
+        self.image.save_image()
+        images = self.image.filter_image_by_location('mars')
+        self.assertTrue(len(images) > 0)
+
 
 class TestCategoryModel(TestCase):
     '''This class tests the category model functionality'''
@@ -63,6 +73,9 @@ class TestCategoryModel(TestCase):
     def test_is_instance(self):
         '''method to test if the category instance is created'''
         self.assertTrue(isinstance(self.category, Category))
+
+    def tearDown(self):
+        Category.objects.all().delete()
 
     def test_save_category(self):
         '''method to test the save category method'''
@@ -80,7 +93,7 @@ class TestCategoryModel(TestCase):
     def test_update_category(self):
         '''method for testing the update category method'''
         self.category.save_category()
-        self.category.update_category('cool', 'vibes on vibes')
+        self.category.update_category(self.category.id, 'photography')
         categories = Category.objects.all()
         self.assertTrue(len(categories) > 0)
 
@@ -89,10 +102,30 @@ class TestLocationModel(TestCase):
     '''This class tests the location model functionality'''
 
     def setUp(self):
-        self.location = Location(name='Nairobi')
+        self.location = Location(location_tag='mars')
 
     def test_is_instance(self):
         self.assertTrue(isinstance(self.location, Location))
 
     def tearDown(self):
         Location.objects.all().delete()
+
+    def test_save_location(self):
+        '''method to test the save location tag method'''
+        self.location.save_location()
+        locations = Location.objects.all()
+        self.assertTrue(len(locations) > 0)
+
+    def test_delete_location(self):
+        '''method to test the delete location tag method'''
+        self.location.save_location()
+        self.location.delete_location(self.location.id)
+        locations = Location.objects.all()
+        self.assertTrue(len(locations) == 0)
+
+    def test_update_location(self):
+        '''method for testing the update location method'''
+        self.location.save_location()
+        self.location.update_location(self.location.id, 'photography')
+        locations = Location.objects.all()
+        self.assertTrue(len(locations) > 0)
