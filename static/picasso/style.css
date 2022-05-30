@@ -1,0 +1,41 @@
+body {
+  background-color: #ffffff;
+}
+
+/* Topnav  styles*/
+.top__nav {
+  /* background: linear-gradient(45deg, #371481 0%, #b058ca 100%); */
+  background: linear-gradient(45deg, #2A6877 0%, #50AC97 100%);
+  font-size: 1em;
+  font-weight: bold;
+}
+.top__nav .nav-link {
+  color: #ffffff;
+}
+
+.top__nav .nav-link:hover {
+  color: rgb(6, 245, 233);
+}
+
+.logo {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #08b9ff;
+  padding: 0 6px;
+}
+
+.search_btn {
+  border: none;
+  padding: 0;
+  color: #2013cf;
+}
+/* Topnav  styles*/
+
+/* Image container start */
+img {
+  width: 100%;
+}
+
+.card {
+  background-color: none;
+}
+/* Image container end */
