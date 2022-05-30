@@ -34,7 +34,7 @@ def search_results(request):
         search_query = request.GET.get('search_term')
         searched_images = Image.search_image_by_category(
             '', search_query) or Image.filter_image_by_location('', search_query)
-        message = f'{search_query}'
+        message = f'Results for: {search_query}'
         context = {
             'images': searched_images,
             'categories': categories,
@@ -43,5 +43,5 @@ def search_results(request):
         }
         return render(request, 'picasso/index.html', context)
     else:
-        message = 'No search term found'
+        message = 'No results found, Please try again.'
         return render(request, 'picasso/index.html', {'message': message})
