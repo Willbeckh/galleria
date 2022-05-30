@@ -30,7 +30,7 @@ ALLOWED_HOSTS = []
 cloudinary.config(
     cloud_name=os.environ['CLOUDINARY_CLOUD_NAME'],
     api_key=os.environ['CLOUDINARY_API_KEY'],
-    api_secret=os.os.environ['CLOUDINARY_API_SECRET']
+    api_secret=os.environ['CLOUDINARY_API_SECRET']
 )
 
 # Application definitio
