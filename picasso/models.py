@@ -1,6 +1,7 @@
 import datetime
 from django.db import models
 from django.utils import timezone
+from cloudinary.models import CloudinaryField
 # Create your models here.
 
 
@@ -53,7 +54,7 @@ class Location(models.Model):
 
 class Image(models.Model):
     """Class that defines the image data fields"""
-    image_file = models.ImageField(upload_to='picasso/images/')
+    image_file = CloudinaryField('image')
     image_name = models.CharField(max_length=100, null=False)
     image_description = models.CharField(max_length=500)
     pub_date = models.DateTimeField('date published', auto_now_add=True)
