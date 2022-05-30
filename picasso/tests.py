@@ -14,7 +14,7 @@ class TestImageModel(TestCase):
         """Method to create the test data"""
         self.location = Location(location_tag='mars')
         self.location.save_location()
-        self.image = Image(image_name='subaru',
+        self.image = Image(id=1, image_name='subaru',
                            image_description='subaru ya mambaru', image_location=self.location)
 
     def tearDown(self):
@@ -52,8 +52,11 @@ class TestImageModel(TestCase):
 
     def test_search_image_by_category(self):
         """Method to test the search image by category method"""
+        self.category = Category(name='sci-fi')
+        self.category.save_category()
+        self.image.categories.add(self.category)
         self.image.save_image()
-        images = Image.objects.filter(image_name__icontains='subaru')
+        images = self.image.search_image_by_category('sci-fi')
         self.assertTrue(len(images) > 0)
 
     def test_filter_image_by_location(self):
