@@ -12,29 +12,40 @@
     <div class="col-md-12">
       <div class="card-columns">
         {% for image in images %}
-        <div class="card bg-none">
-          <div class="">
-            <a
-              href="{{image.image_file.url}}"
-              class=""
-              data-fancybox="gallery"
-              data-caption="<p class='h3'>{{ image.image_name }}</p>"
-            >
-              <img
-                src="{{ image.image_file.url }}"
-                alt="{{ image.image_name }} image"
-                class="rounded"
-              />
-            </a>
-          </div>
-          <div class="card-img-overlay d-none fadeIn-bottom">
-            <p class="text-center fs-4">{{ image.image_description }}</p>
-          </div>
+        <div class="card">
+          <a
+            href="{{image.image_file.url}}"
+            class="data-fancybox"
+            data-fancybox="gallery"
+            data-caption="
+            <div class='fancy-text'>
+              <strong class='image_name'>{{ image.image_name }}</strong>
+              <small class='text-muted'>{{ image.pub_date}}</small>
+              
+              <p class='img-description'>{{ image.image_description }}</p>
+              <small class=''>Location: {{image.image_location.location_tag}} shot on lenses</small>
+            </div>"
+          >
+            <img
+              src="{{ image.image_file.url }}"
+              alt="{{ image.image_name }} image"
+              class="rounded"
+            />
+          </a>
+          <small
+            class="link-btn"
+            data-toggle="tooltip"
+            data-placement="top"
+            title="copy image url"
+            data-url="{{image.image_file.url}}"
+            ><i class="fas fa-link"></i
+          ></small>
         </div>
         {% endfor %}
       </div>
+
+      <!-- todo: display image category -->
     </div>
-    <!-- todo: display image category -->
   </div>
 </div>
 {% endblock %}
