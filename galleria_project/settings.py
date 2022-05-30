@@ -5,6 +5,9 @@ galleria project settings
 import os
 import dotenv
 from pathlib import Path
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,9 +26,14 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# cloudinary config
+cloudinary.config(
+    cloud_name=os.environ['CLOUDINARY_CLOUD_NAME'],
+    api_key=os.environ['CLOUDINARY_API_KEY'],
+    api_secret=os.os.environ['CLOUDINARY_API_SECRET']
+)
 
-# Application definition
-
+# Application definitio
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -36,7 +44,8 @@ INSTALLED_APPS = [
     # user defined apps
     'picasso.apps.PicassoConfig',
     'bootstrap4',
-    'fontawesomefree'
+    'fontawesomefree',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -77,10 +86,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': os.environ['DB_NAME'],
-        'USER': os.environ['DB_USER'], 
+        'USER': os.environ['DB_USER'],
         'PASSWORD': os.environ['DB_PASSWORD'],
         'HOST': os.environ['DB_HOST'],
-        'PORT':os.environ['DB_PORT'],
+        'PORT': os.environ['DB_PORT'],
     }
 }
 
