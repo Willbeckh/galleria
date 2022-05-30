@@ -45,3 +45,15 @@ def search_results(request):
     else:
         message = 'No results found, Please try again.'
         return render(request, 'picasso/index.html', {'message': message})
+
+# categories dropdown
+def get_by_category(request, category):
+    '''this method filters images by category picked by user'''
+    categories = Category.objects.all()
+    category_results = Image.search_image_by_category('', category)
+    context = {
+        'categories': categories,
+        'images': category_results,
+        'title': 'Categories'
+    }
+    return render(request, 'picasso/index.html', context)
