@@ -1,6 +1,6 @@
 # Picasso
 
-My personal art gallery, where I showcase some of my best pices.
+My personal art gallery, where I showcase some of my favorite pictures.
 
 # Prerequisites
 
@@ -104,7 +104,7 @@ or you can also open an issue or PR[here](https: // github.com/Willbeckh/galleri
 
 # Known Issues
 
-At the moment of completion and deploy, no bigs have been found yet, but if you find any you know what it is, it's a feature : )
+At the moment of completion and deploy, no bugs have been found yet, but if you find any you know what it is, it's a feature : )
 
 # Author
 
@@ -113,7 +113,7 @@ Created with ❤️ by Willbeckh.
 # Credits
 
 Image credits:
-https: // unsplash.com
+[unsplash](https://www.unsplash.com)
 
 # License
 
